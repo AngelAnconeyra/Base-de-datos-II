@@ -5,10 +5,8 @@
 #include<string>
 using namespace std;
 int const fr = 4;
-char frames[fr];
 int j = 0,hit = 0;
-char frames[fr];
-Double_Linked_List<char> Fr;
+Double_Linked_List<char> Frames;
 
 void llenar(vector<char> &Req){
     ifstream file("Req.txt");
@@ -22,7 +20,7 @@ void llenar(vector<char> &Req){
 }
 
 int verificar(char letra){
-    int k = Fr.get_size();
+    int k = Frames.get_size();
     for(int i=0;i<k;i++){
 
     }
@@ -31,7 +29,34 @@ int verificar(char letra){
 
 void CLOCK(vector<char> Req){
     while(j < Req.size()){
-
+        if(Frames.buscar(Req[j])){ //Si se encuentra en los frames
+            Nodo<char> *tmp = Frames.get_head();
+            for(int i=0;i<Frames.get_size();i++){
+                if(tmp->get_dato() == Req[j]){
+                    tmp->set_ref(1);
+                    break;
+                }
+                tmp = tmp->get_sig();
+            }
+        }
+        //Si no se encuentra en el frame
+        else{
+            //Si no se llenaron los frames
+            if(Frames.get_size() < fr){
+                Frames.push_back(Req[j]);
+            }
+            //si estan llenos todos los frames
+            else{
+                Nodo<char> *tmp = Frames.get_puntero();
+                for(int i=0;i<Frames.get_size();i++){
+                    tmp->set_ref(0);
+                    tmp = tmp->get_sig();
+                }
+                tmp = tmp->get_sig();
+                tmp->set_ref(1);
+                tmp->set_dato(Req[j]);
+            }
+        }
         j++;
     }
 }
@@ -40,10 +65,13 @@ int main(){
     vector<char> Req;
     llenar(Req);
     CLOCK(Req);
-    for(int i=0;i<fr;i++){
-        cout << frames[i] <<" ";
+    Nodo<char> *tmp = Frames.get_head();
+    for(int i=0;i<Frames.get_size();i++){
+        cout << tmp->get_dato() <<" ";
+        tmp = tmp->get_sig();
     }
-    cout<<"\nHit: "<<hit<<endl;
+    
+    //cout<<"\nHit: "<<hit<<endl;
 
     return 0;
 }
