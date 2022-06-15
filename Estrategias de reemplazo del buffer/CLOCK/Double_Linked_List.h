@@ -7,12 +7,16 @@ template<typename T>
 class Double_Linked_List{
     private:
         Nodo<T> *head;
+        Nodo<T> *puntero;
         int size;
     public:
         Double_Linked_List();
         void push_back(T);
         bool buscar(T);
+        void pop_back();
         int get_size();
+        Nodo<T>* get_head();
+        Nodo<T>* get_puntero();
         ~Double_Linked_List();
 };
 
@@ -39,6 +43,7 @@ void Double_Linked_List<T>::push_back(T dato){
         aux->set_sig(nuevo);
         nuevo->set_ant(aux);
     }
+    this->puntero = nuevo;
     size++;
 }
 
@@ -60,8 +65,38 @@ bool Double_Linked_List<T>::buscar(T dato){
 }
 
 template<typename T>
+void Double_Linked_List<T>::pop_back(){
+    if(!this->head){
+        return;
+    }else if(this->size == 1){
+        delete head;
+        this->head = nullptr;
+    }
+    else{
+        Nodo<T> *aux = this->head;
+        for(int i=1;i<size;++i){
+            aux = aux->get_sig();
+        }
+        aux->get_ant()->set_sig(nullptr);
+        delete aux;
+    }
+    size--;
+    return;
+}
+
+template<typename T>
 int Double_Linked_List<T>::get_size(){
     return this->size;
+}
+
+template<typename T>
+Nodo<T>* Double_Linked_List<T>::get_head(){
+    return this->head;
+}
+
+template<typename T>
+Nodo<T>* Double_Linked_List<T>::get_puntero(){
+    return this->puntero;
 }
 
 template<typename T>
