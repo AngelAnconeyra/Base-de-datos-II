@@ -9,7 +9,7 @@ int j = 0,hit = 0;
 Double_Linked_List<char> Frames;
 
 void llenar(vector<char> &Req){
-    ifstream file("Req.txt");
+    ifstream file("../Req.txt");
     string texto;
     getline(file,texto);
     for(int i=0;i<texto.size();i++){
@@ -19,12 +19,15 @@ void llenar(vector<char> &Req){
     }
 }
 
-int verificar(char letra){
-    int k = Frames.get_size();
-    for(int i=0;i<k;i++){
-
+bool todo_1(){
+    Nodo<char> *tmp = Frames.get_puntero();
+    for(int i=0;i<Frames.get_size();i++){
+        if(tmp->get_ref() == 0){
+            return false;
+        }
+        tmp = tmp->get_sig();
     }
-    return -1;
+    return true;
 }
 
 void CLOCK(vector<char> Req){
@@ -38,6 +41,7 @@ void CLOCK(vector<char> Req){
                 }
                 tmp = tmp->get_sig();
             }
+            hit++;
         }
         //Si no se encuentra en el frame
         else{
@@ -48,13 +52,29 @@ void CLOCK(vector<char> Req){
             //si estan llenos todos los frames
             else{
                 Nodo<char> *tmp = Frames.get_puntero();
-                for(int i=0;i<Frames.get_size();i++){
-                    tmp->set_ref(0);
+                // si todos tienen referencia 1
+                if(todo_1()){
+                    for(int i=0;i<Frames.get_size();i++){
+                        tmp->set_ref(0);
+                        tmp = tmp->get_sig();
+                    }
                     tmp = tmp->get_sig();
+                    tmp->set_dato(Req[j]);
+                    tmp->set_ref(1);
+                    Frames.set_puntero(tmp);
                 }
-                tmp = tmp->get_sig();
-                tmp->set_ref(1);
-                tmp->set_dato(Req[j]);
+                //caso : *1 1 0 0
+                else{
+                    for(int i=0;i<Frames.get_size();i++){
+                        if(tmp->get_ref() == 0){
+                            tmp->set_ref(1);
+                            tmp->set_dato(Req[j]);
+                            Frames.set_puntero(tmp);
+                            break;
+                        }
+                        tmp = tmp->get_sig();
+                    }
+                }
             }
         }
         j++;
@@ -71,7 +91,7 @@ int main(){
         tmp = tmp->get_sig();
     }
     
-    //cout<<"\nHit: "<<hit<<endl;
+    cout<<"\nHit: "<<hit<<endl;
 
     return 0;
 }
