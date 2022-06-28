@@ -17,6 +17,7 @@ class Double_Linked_List{
         int get_size();
         Nodo<T>* get_head();
         Nodo<T>* get_puntero();
+        void set_puntero(Nodo<T>*);
         ~Double_Linked_List();
 };
 
@@ -97,6 +98,11 @@ Nodo<T>* Double_Linked_List<T>::get_head(){
 template<typename T>
 Nodo<T>* Double_Linked_List<T>::get_puntero(){
     return this->puntero;
+}
+
+template<typename T>
+void Double_Linked_List<T>::set_puntero(Nodo<T>* tmp){
+    this->puntero = tmp;
 }
 
 template<typename T>
