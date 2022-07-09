@@ -136,8 +136,9 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     int move_up=(t-1)/2; //1
     int n_fullNodo=fullNodo->n; //num de claves 5
     //int carry= fullNodo->key[move_up],i_child=0;
-    float val1= ceil(float(t)/2); //que valor es la que ira en el nodo padre
-    int walk_chil= val1; // arreglar  2
+    //float val1= ceil(float(t)/2);
+    //int walk_chil= val1; 
+
     //pasa los valores al Nodo hijo derecho
     //insertar en el nodo derecho
     for(int i= move_up+1;i<n_fullNodo;i++){// 5
@@ -160,7 +161,6 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     fullNodo->n = (fullNodo->n)+1;
 
     //Si el Nodo que nosotros estamos dividiendo tiene hijos 
-    //revisar detalladamente
     if(fullNodo != root){
         int i=t;
         while(!anterior->key[i-1]){
@@ -179,22 +179,8 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
         //anterior->child[anterior->n]=anterior->child[1];
         anterior->child[i+1]=rightNodo;
         anterior->child[i]=leftNodo;
-        /*
-        for(int i=anterior->n-1;i>=0;i--){ // 2 do 4
-            anterior->child[i]=fullNodo->child[i];
-        }
-        */
         delete fullNodo;
     }
-    /*
-    if(fullNodo->leaf == false){
-        for(int i=walk_chil;i<=t;i++){ // 2 do 4
-            rightNodo->child[i_child]=fullNodo->child[i];
-            i_child++;
-        }
-        rightNodo->leaf= fullNodo->leaf;
-    }
-    */
     
    /*
     int hold=t-1;//3
