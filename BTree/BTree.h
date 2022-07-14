@@ -40,7 +40,6 @@ int BTree::getT(){
 }
 
 //Funciones
-
 void BTree::insert(int data){
     Nodo *nuevo= new Nodo(t);
     if(!this->root){
@@ -54,35 +53,9 @@ void BTree::insert(int data){
         root->findNodo(root,data,t,root,root);
     }
 }
-/*
-void BTree::imprimir(){
-    //int i=0;
-    if(!this->root){
-        cout<<"\nVacio\n";
-    }
-    else{
-        cout<<"0: ";
-        for(int i=0;i<root->getN();i++){
-            cout<<root->getKey()[i]<<" ";
-        }
-        cout<<endl;
-        //if(root->getChild(root,0) && root->getChild(root,1)){
-            cout<<"1: ";
-            Nodo *Izq = root->getChild(root,0);
-            Nodo *Der = root->getChild(root,1);
-            for(int i=0;i<Izq->getN();i++){
-                cout<<Izq->getKey()[i]<<" ";
-            }
-            cout<<"\n2: ";
-            for(int i=0;i<Der->getN();i++){
-                cout<<Der->getKey()[i]<<" ";
-            }
-        //}
-    }
-}
-*/
 
 void BTree::imprimir(){
+    cout<<"pasa\n";
     if(!this->root){
         cout<<"\nVacio\n";
     }
