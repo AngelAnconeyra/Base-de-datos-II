@@ -17,6 +17,11 @@ int main(){
     ejem.insert(20);
     ejem.insert(24);
     ejem.insert(48);
+    ejem.insert(19);
+    ejem.insert(60);
+    ejem.insert(35);
+    ejem.insert(66);
+    ejem.insert(70);
     ejem.imprimir();
     //cout<< ejem.getT();
     return 0;
