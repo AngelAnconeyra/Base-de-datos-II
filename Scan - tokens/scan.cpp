@@ -73,7 +73,7 @@ void scan (string text){
     }
     if(words[0]=="update"){
         if(isNumber(words[1])){
-            cout<<"funcion para remover numero";
+            cout<<"funcion para actualizar";
             if(words[2]==";"){
                 cout<<"fin";
                 
