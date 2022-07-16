@@ -1,15 +1,17 @@
 #ifndef BUCKET_H
 #define BUCKET_H
 
-#include <map>
 #include <iostream>
+#include <map>
+#include <vector>
 class Bucket
 {
 private:
 	int local_depth;
-	std::map<std::string, int> values;
+	std::vector<int> values;
 	int size;
 	friend class ExtendibleHash;
+	friend class Directory;
 public:
 	Bucket(int depth, int max_size);
 	void setLocaldepth(int depth);
@@ -17,7 +19,7 @@ public:
 	bool isFull();
 	void clear();
 };
-Bucket::Bucket(int depth,int max_size) : local_depth(1), size(max_size)
+Bucket::Bucket(int depth, int max_size) : local_depth(depth), size(max_size)
 {
 }
 void Bucket::setLocaldepth(int depth)
@@ -36,7 +38,7 @@ bool Bucket::isFull()
 	}
 	else
 	{
-		return 0;
+		return false;
 	}
 }
 
