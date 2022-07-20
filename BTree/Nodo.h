@@ -20,12 +20,14 @@ class Nodo{
         //getters
         int* getKey();
         int getN();
+        bool getLeaf();
         Nodo *getChild(Nodo*,int);
 
         //funciones
         void findNodo(Nodo*,int,int,Nodo*,Nodo*);
         void splitChild(Nodo*,int,Nodo*,Nodo*);
         void dividir(Nodo*,int,Nodo*,Nodo*,Nodo*);
+        void erase(Nodo*,int,int,Nodo*);
         ~Nodo();
 
 };
@@ -66,6 +68,10 @@ int Nodo::getN(){
     return this->n;
 }
 
+bool Nodo::getLeaf(){
+    return this->leaf;
+}
+
 Nodo* Nodo::getChild(Nodo *node_active,int i){
     return node_active->child[i];
 }
@@ -78,7 +84,6 @@ void Nodo::findNodo(Nodo *node_active,int data,int t,Nodo *root,Nodo *anterior){
         //pasar por las claves hasta que el valor no sea nulo
         while(!node_active->key[i-1]){
             i--;
-            //cout<< i <<endl;
         }
         //Si el valor es mayor que el que esta en la parte extema derecha, le inserta a la derecha
         while(node_active->key[i-1]>data && i!=0){
@@ -94,16 +99,13 @@ void Nodo::findNodo(Nodo *node_active,int data,int t,Nodo *root,Nodo *anterior){
     else{
         int i=0;
         //
-        while(i<node_active->n && data>node_active->key[i]){ //en vez de root: node_active
+        while(i<node_active->n && data>node_active->key[i]){ 
             i++;
         }
-        //child[i]->findNodo(this->child[i],data,t,root);
         findNodo(node_active->child[i],data,t,root,node_active);
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     //se pone el +1 pra igualara la cantidad de claves y frames
     //para poder insertar un elemento más a la lista y ocurra el overflow
-    
     if(node_active->n == t+1){
         splitChild(node_active,t,root,anterior);
     }
@@ -114,35 +116,18 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     Nodo *rightNodo = new Nodo(t);
     Nodo *leftNodo = new Nodo(t);
     fullNodo->leaf = false;
-    int i_right=0;// i_left=0; 
-    int move_up=(t-1)/2; //1
-    int n_fullNodo=fullNodo->n; //num de claves 5
-    //int carry= fullNodo->key[move_up],i_child=0;
+    int i_right=0; 
+    int n_fullNodo=fullNodo->n; //num de claves 
     float val1= ceil(float(t)/2);
-    int walk_chil= val1; 
+    int walk_chil= val1;
 
-    //Si tiene hijos y no es una hojal
-    //hacerlo al inicio
-    if(fullNodo->child[0]!=nullptr && fullNodo->leaf==false){
-        //Nodo izquierdo
-        for(int i=0;i<=walk_chil;i++){
-            leftNodo->child[i]=fullNodo->child[i];
-        }
-        //Nodo dercho
-        int j=0;
-        for(int i=walk_chil+1;i<=t;i++){
-            rightNodo->child[j]=fullNodo->child[i];
-            j++;
-        }
-    }
-    else{
-        fullNodo->child[0] = leftNodo;
-        fullNodo->child[1] = rightNodo;
-    }
+    fullNodo->child[0] = leftNodo;
+    fullNodo->child[1] = rightNodo;
+    leftNodo->child[t] = rightNodo;
 
     //pasa los valores al Nodo hijo derecho
     //insertar en el nodo derecho
-    for(int i= move_up+1;i<n_fullNodo;i++){// 5
+    for(int i= walk_chil;i<n_fullNodo;i++){// 5
         rightNodo->key[i_right]=fullNodo->key[i]; //
         fullNodo->key[i]= NULL;
         i_right++;
@@ -151,7 +136,7 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     }
 
     //insertar en el nodo izquierdo
-    for(int i= 0;i<=move_up;i++){//
+    for(int i= 0;i<walk_chil;i++){//
         leftNodo->key[i]=fullNodo->key[i]; //
         fullNodo->key[i]= NULL;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
@@ -161,7 +146,6 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     fullNodo->key[0]=rightNodo->key[0];
     fullNodo->n = (fullNodo->n)+1;
     //Si el Nodo que nosotros estamos dividiendo no es la raiz
-    //poner en una función aparte tal vez
     if(fullNodo != root){
         int i=t; //num claves
         while(!anterior->key[i-1]){
@@ -169,9 +153,8 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
         }
         //Si el valor es mayor que el que esta en la parte extema derecha, le inserta a la derecha
         while(anterior->key[i-1]>fullNodo->key[0] && i!=0){
-            anterior->key[i]=anterior->key[i-1]; // ejem: 1 3 5 [] e insertar el 2= 1 2 3 5
+            anterior->key[i]=anterior->key[i-1]; 
             anterior->child[i+1]=anterior->child[i];  
-            //anterior->child[i]=rightNodo;           ////en otra parte
             i--;
         }
         //se inserta en lugar respectivo
@@ -180,12 +163,18 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
 
         //caso en el que el anterior tambien este lleno sus claves
         if(anterior->n==t+1){
-            //splitChild(anterior,t,root,anterior); //que retorne un nodo
             dividir(anterior,t,root,rightNodo,leftNodo);
         }
         else{
             anterior->child[i+1]=rightNodo;
             anterior->child[i]=leftNodo;
+            if(i == 0){
+                rightNodo->child[t] = anterior->child[i+2];
+            }
+            else{
+                anterior->child[i-1]->child[t] = leftNodo;
+                rightNodo->child[t] = anterior->child[i+2];
+            }
         }
         delete fullNodo;
     }
@@ -195,16 +184,15 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
     Nodo *rightNodo = new Nodo(t);
     Nodo *leftNodo = new Nodo(t);
     fullNodo->leaf = false;
-    int i_right=0;// i_left=0; 
-    int move_up=(t-1)/2; //1
-    int n_fullNodo=fullNodo->n; //num de claves 5
+    int i_right=0;
+    int n_fullNodo=fullNodo->n; //num de claves 
     float val1= ceil(float(t)/2);
     int walk_chil= val1; 
 
+    int guardar= fullNodo->key[walk_chil];
     //pasa los valores al Nodo hijo derecho
     //insertar en el nodo derecho
-    int guardar= fullNodo->key[move_up+1];
-    for(int i= move_up+2;i<n_fullNodo;i++){// 5
+    for(int i= walk_chil+1;i<n_fullNodo;i++){// 5
         rightNodo->key[i_right]=fullNodo->key[i]; //
         fullNodo->key[i]= NULL;
         i_right++;
@@ -213,19 +201,17 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
     }
 
     //insertar en el nodo izquierdo
-    for(int i= 0;i<=move_up;i++){//
+    for(int i= 0;i<walk_chil;i++){//
         leftNodo->key[i]=fullNodo->key[i]; //
         fullNodo->key[i]= NULL;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
         leftNodo->n = (leftNodo->n)+1; //aumenta en 1 el n, cantidad de claves
     }
     //volvemos a insertar el menor valor del nodo derecho en su padre
-    fullNodo->key[move_up+1] = NULL;
+    fullNodo->key[walk_chil] = NULL;
     fullNodo->key[0]=guardar;
-    //fullNodo->n = (fullNodo->n)+1;
 
-    //Si tiene hijos y no es una hojal
-    //hacerlo al inicio
+    //Si tiene hijos y no es una hoja
     if(fullNodo->child[0]!=nullptr && fullNodo->leaf==false){
         //Nodo izquierdo
         for(int i=0;i<=walk_chil;i++){
@@ -250,11 +236,19 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
         //pasar por las claves hasta que el valor no sea nulo
         while(!rightNodo->key[i-1]){
             i--;
-            //cout<< i <<endl;
         }
         //Si el valor es mayor que el que esta en la parte extema derecha, le inserta a la derecha
         while(rightNodo->key[i-1]>leftN->key[0] && i!=0){
+            //rightNodo->child[i+2]=rightNodo->child[i];  
             i--;
+        }
+        //Para conectar las hojas
+        if(i == 0){
+            rightN->child[t] = rightNodo->child[i+2];
+        }
+        else{
+            rightNodo->child[i-1]->child[t] = leftN;
+            rightN->child[t] = rightNodo->child[i+2];
         }
         //se inserta en lugar respectivo
         rightNodo->child[i] = leftN;
@@ -266,16 +260,49 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
         //pasar por las claves hasta que el valor no sea nulo
         while(!leftNodo->key[i-1]){
             i--;
-            //cout<< i <<endl;
         }
         //Si el valor es mayor que el que esta en la parte extema derecha, le inserta a la derecha
         while(leftNodo->key[i-1]>leftN->key[0] && i!=0){
+            //leftNodo->child[i+2]=leftNodo->child[i]; 
             i--;
+        }
+        //Para conectar las hojas
+        if(i == 0){
+            rightN->child[t] = rightNodo->child[i+2];
+        }
+        else{
+            leftNodo->child[i-1]->child[t] = leftN;
+            rightN->child[t] = leftNodo->child[i+2];
         }
         //se inserta en lugar respectivo
         leftNodo->child[i] = leftN;
         leftNodo->child[i+1] = rightN;
     }
+    //Conecta el ultimo hijo del lado derecho del Nodo izquierdo con el hijo del lado izquierdo del nodo derecho
+    leftNodo->child[leftNodo->n]->child[t] = rightNodo->child[0];
+}
+
+void Nodo::erase(Nodo* node_active,int data,int t,Nodo* anterior){
+    if(!node_active->leaf){
+        int i=t;
+        while(!node_active->key[i-1]){
+            i--;
+        }
+        while(node_active->key[i-1]>data && i!=0){
+            i--;
+        }
+        erase(node_active->child[i],data,t,node_active);
+    }
+    else{
+        int i=t;
+        while(!node_active->key[i-1]){
+            i--;
+        }
+        while(node_active->key[i-1]>data && i!=0){ 
+            i--;
+        }
+    }
+
 }
 
 Nodo::~Nodo(){
