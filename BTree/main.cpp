@@ -18,23 +18,25 @@ int main(){
 
     ejem.insert(51);
 
-    ejem.insert(20);
-    ejem.insert(24);
+    //ejem.insert(20);
+    //ejem.insert(24);
 
-    ejem.insert(48);
-    ejem.insert(19);
-    ejem.insert(60);
+    //ejem.insert(48);
+    //ejem.insert(19);
+    //ejem.insert(60);
 
-    ejem.insert(35);
-    ejem.insert(66);
+    //ejem.insert(35);
+    //ejem.insert(66);
 
     //ejem.insert(70);
 
     //ejem.insert(9);
     //ejem.insert(11);
     //ejem.insert(14);
+
+    //ejem.erase(25);
     ejem.imprimir();
     //ejem.imprimirHojas();
-    //ejem.buscarRango(11,19);
+    //ejem.buscarRango(13,17);
     return 0;
 }
