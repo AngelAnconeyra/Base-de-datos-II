@@ -27,7 +27,7 @@ class Nodo{
         void findNodo(Nodo*,int,int,Nodo*,Nodo*);
         void splitChild(Nodo*,int,Nodo*,Nodo*);
         void dividir(Nodo*,int,Nodo*,Nodo*,Nodo*);
-        void erase(Nodo*,int,int,Nodo*);
+        void erase(Nodo*,int,int,Nodo*,int,Nodo*,int);
         ~Nodo();
 
 };
@@ -35,7 +35,7 @@ class Nodo{
 Nodo::Nodo(int tamanhoFrame){
     key = new int[tamanhoFrame+1];//cantidad de claves --------- +1
     for(int i=0;i<tamanhoFrame;i++){
-        key[i]=NULL;
+        key[i]=0;
     }
     leaf = true;
     n=0;
@@ -98,7 +98,6 @@ void Nodo::findNodo(Nodo *node_active,int data,int t,Nodo *root,Nodo *anterior){
     //si no es una hoja el root
     else{
         int i=0;
-        //
         while(i<node_active->n && data>node_active->key[i]){ 
             i++;
         }
@@ -123,13 +122,14 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
 
     fullNodo->child[0] = leftNodo;
     fullNodo->child[1] = rightNodo;
+    //Se conectan los nodos
     leftNodo->child[t] = rightNodo;
 
     //pasa los valores al Nodo hijo derecho
     //insertar en el nodo derecho
     for(int i= walk_chil;i<n_fullNodo;i++){// 5
         rightNodo->key[i_right]=fullNodo->key[i]; //
-        fullNodo->key[i]= NULL;
+        fullNodo->key[i]= 0;
         i_right++;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
         rightNodo->n = (rightNodo->n)+1; //aumenta en 1 el n, cantidad de claves
@@ -138,7 +138,7 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
     //insertar en el nodo izquierdo
     for(int i= 0;i<walk_chil;i++){//
         leftNodo->key[i]=fullNodo->key[i]; //
-        fullNodo->key[i]= NULL;
+        fullNodo->key[i]= 0;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
         leftNodo->n = (leftNodo->n)+1; //aumenta en 1 el n, cantidad de claves
     }
@@ -168,6 +168,7 @@ void Nodo::splitChild(Nodo *fullNodo, int t,Nodo *root,Nodo *anterior){
         else{
             anterior->child[i+1]=rightNodo;
             anterior->child[i]=leftNodo;
+            //Para conectar nodos hoja
             if(i == 0){
                 rightNodo->child[t] = anterior->child[i+2];
             }
@@ -194,7 +195,7 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
     //insertar en el nodo derecho
     for(int i= walk_chil+1;i<n_fullNodo;i++){// 5
         rightNodo->key[i_right]=fullNodo->key[i]; //
-        fullNodo->key[i]= NULL;
+        fullNodo->key[i]= 0;
         i_right++;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
         rightNodo->n = (rightNodo->n)+1; //aumenta en 1 el n, cantidad de claves
@@ -203,12 +204,12 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
     //insertar en el nodo izquierdo
     for(int i= 0;i<walk_chil;i++){//
         leftNodo->key[i]=fullNodo->key[i]; //
-        fullNodo->key[i]= NULL;
+        fullNodo->key[i]= 0;
         fullNodo->n = (fullNodo->n)-1; // disminuye el num de claves
         leftNodo->n = (leftNodo->n)+1; //aumenta en 1 el n, cantidad de claves
     }
     //volvemos a insertar el menor valor del nodo derecho en su padre
-    fullNodo->key[walk_chil] = NULL;
+    fullNodo->key[walk_chil] = 0;
     fullNodo->key[0]=guardar;
 
     //Si tiene hijos y no es una hoja
@@ -282,7 +283,7 @@ void Nodo::dividir(Nodo* fullNodo,int t,Nodo* root,Nodo* rightN,Nodo* leftN){
     leftNodo->child[leftNodo->n]->child[t] = rightNodo->child[0];
 }
 
-void Nodo::erase(Nodo* node_active,int data,int t,Nodo* anterior){
+void Nodo::erase(Nodo* node_active,int data,int t,Nodo* anterior,int a,Nodo* guardado,int g){
     if(!node_active->leaf){
         int i=t;
         while(!node_active->key[i-1]){
@@ -291,7 +292,13 @@ void Nodo::erase(Nodo* node_active,int data,int t,Nodo* anterior){
         while(node_active->key[i-1]>data && i!=0){
             i--;
         }
-        erase(node_active->child[i],data,t,node_active);
+        //En caso de que el numero tambien se encuentre el alguno de los nodos padres
+        if(node_active->key[i-1] == data){
+            guardado = node_active;
+            g= i-1;
+        }
+        //Busca el nodo hoja donde se encuentra el numero
+        erase(node_active->child[i],data,t,node_active,i-1,guardado,g);
     }
     else{
         int i=t;
@@ -300,6 +307,87 @@ void Nodo::erase(Nodo* node_active,int data,int t,Nodo* anterior){
         }
         while(node_active->key[i-1]>data && i!=0){ 
             i--;
+        }
+        for(int j=i-1;j<node_active->n-1;j++){
+            node_active->key[j] = node_active->key[j+1];
+        }
+        node_active->key[node_active->n-1] = 0;
+        node_active->n--;
+        //Si en el nodo anterior tambien se encuentra el numero
+        int num = t/2;
+        if(i-1 == 0 && anterior->key[a]== data){
+            //anterior->key[a] == 0;
+            //anterior->n--;
+            if(node_active->n < num){
+                //si se presta de su hemrano izquierdo
+                if(a+1!=0 && anterior->child[a]->n > num){
+                    for(int j=node_active->n;j>0;j--){
+                        node_active->key[i]= node_active->key[i-1];
+                    }
+                    node_active->key[0]= anterior->child[a]->key[anterior->child[a]->n-1];
+                    node_active->n++;
+                    anterior->child[a]->key[anterior->child[a]->n-1]= 0;
+                    anterior->child[a]->n--;
+                    anterior->key[a] = node_active->key[0];
+                }
+                else if(anterior->child[a+2]->n > num){
+                    node_active->key[node_active->n] = anterior->child[a+2]->key[0];
+                    for(int j=0;j<anterior->child[a+2]->n-1;j++){
+                        anterior->child[a+2]->key[j] = anterior->child[a+2]->key[j+1];
+                    }
+                    anterior->child[a+2]->key[anterior->child[a+2]->n-1] = 0;
+                    anterior->child[a+2]->n--;
+                    node_active->n++;
+                    anterior->key[a+1] = anterior->child[a+2]->key[0];
+                }
+                else{
+                    if(a+1!=0){
+                        int x=anterior->child[a]->n;
+                        for(int j=0;j<node_active->n;j++){
+                            anterior->child[a]->key[x]= node_active->key[j];
+                            anterior->child[a]->n++;
+                            x++;
+                        }
+                        anterior->child[a]->child[t] = node_active->child[t];
+                        delete node_active;
+                        for(int j=a;j<anterior->n-1;j++){
+                            anterior->key[j] = anterior->key[j+1];
+                            anterior->child[j+1] = anterior->child[j+2];
+                        }
+                        anterior->key[anterior->n-1]=0;
+                        anterior->n--;
+                        anterior->child[anterior->n]=nullptr;
+                    }
+                    else{
+                        int x=node_active->n;
+                        for(int j=0;j<anterior->child[a+2]->n;j++){
+                            node_active->key[x]= anterior->child[a+2]->key[j];
+                            node_active->n++;
+                            x++;
+                        }
+                        node_active->child[t] = anterior->child[a+2]->child[t];
+                        delete anterior->child[a+2]->child[t];
+                        for(int j=a+1;j<anterior->n-1;j++){
+                            anterior->key[j] = anterior->key[j+1];
+                            anterior->child[j+1] = anterior->child[j+2];
+                        }
+                        anterior->key[anterior->n-1]=0;
+                        anterior->n--;
+                        anterior->child[anterior->n]=nullptr;
+                    }
+                }
+            }
+            else{
+                anterior->key[a] = node_active->key[0];
+            }
+        }
+        //Si el nodo donde tambien se encuentra el numero es anterior a su padre, tal vez sua abuelo o bisabuelo
+        else if(i-1==0 && anterior!=guardado){
+            guardado->key[g] == 0;
+            guardado->n--;
+        }
+        else{
+            
         }
     }
 
