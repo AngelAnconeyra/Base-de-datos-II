@@ -100,7 +100,7 @@ void BTree::erase(int data){
         cout<<"\nBTree vacio\n";
     }
     else{
-        root->erase(root,data,t,root);
+        root->erase(root,data,t,root,0,root,0);
     }
 }
 
