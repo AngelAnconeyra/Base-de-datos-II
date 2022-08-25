@@ -10,7 +10,6 @@ using std::endl; using std::string;
 using std::vector; using std::istringstream;
 using std::stringstream;
 
-//Funcion para verificar si una palabra es un numero
 bool isNumber(const string& str)
 {
     for (char const &c : str) {
@@ -23,11 +22,9 @@ void scan (string text){
 
     char space_char = ' ';
     vector<string> words{};
-    
+
     stringstream sstream(text);
     string word;
-    
-    //Convierte una frase o comando en un vector de palabras
     while (std::getline(sstream, word, space_char)){
         word.erase(std::remove_if(word.begin()  , word.end(), ispunct), word.end());
         words.push_back(word);
@@ -37,8 +34,7 @@ void scan (string text){
         cout << str << endl;
     }*/
     
-    // Condicionales para reconocer el primer comando ingresado
-    
+    cout<<"word: "<<words[0]<< "a"<<endl;
     if(words[0]=="add"){
         if(isNumber(words[1])){
             cout<<"funcion para agregar numero"<<endl;
@@ -48,7 +44,7 @@ void scan (string text){
             }
         }
         else{
-             cout<<"string";
+             cout<<" funcion para agregar string";
              if(words[2]==";"){
                 cout<<"fin";
                 
@@ -64,7 +60,7 @@ void scan (string text){
             }
         }
         else{
-             cout<<"string";
+             cout<<"funcion para remover string";
              if(words[2]==";"){
                 cout<<"fin";
                 
@@ -73,14 +69,14 @@ void scan (string text){
     }
     if(words[0]=="update"){
         if(isNumber(words[1])){
-            cout<<"funcion para actualizar";
+            cout<<"funcion para actualizar numero";
             if(words[2]==";"){
                 cout<<"fin";
                 
             }
         }
         else{
-             cout<<"string";
+             cout<<"funcion para actualizar string";
              if(words[2]==";"){
                 cout<<"fin";
                 
