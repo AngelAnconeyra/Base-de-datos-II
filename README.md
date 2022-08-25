@@ -12,7 +12,7 @@ Cada archivo fue creado por separado para posteriormente unirlo, donde se pueden
 ## BTree
 Al descargar la carpeta BTree puede probrarlo desde el main.cpp, desde ahí puede ejecutarlo.
 <p align="center">
-  <img width="460" height="300" src="Imagenes/BTree_main.png">
+  <img src="Imagenes/BTree_main.png">
 </p>
 
 Tiene algunos ejemplos para insertar, eliminar, buscar rango o imprimir todas la hojas, que estan comentados.
