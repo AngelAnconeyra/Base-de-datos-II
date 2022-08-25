@@ -16,16 +16,19 @@ Al descargar la carpeta BTree puede probrarlo desde el main.cpp, desde ahí pued
 </p>
 
 Tiene algunos ejemplos para insertar, eliminar, buscar rango o imprimir todas la hojas, que estan comentados.
-
-![alt text](Imagenes/BTree_ejemplos.png)
+<p align="center">
+  <img src="Imagenes/BTree_ejemplos.png">
+</p>
 
 Al inicio puede indicar el número de frames que puede entrar en cada Nodo. 
-
-![alt text](Imagenes/BTree_inicio.png)
+<p align="center">
+  <img src="Imagenes/BTree_inicio.png">
+</p>
 
 Al ejecutar el programa, se podra observar por la terminal cada nodo enumerado con sus valores que contiene.
-
-![alt text](Imagenes/BTree_terminal.png)
+<p align="center">
+  <img src="Imagenes/BTree_terminal.png">
+</p>
 
 ## Estrategias de reemplazo del buffer
 
