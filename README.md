@@ -7,7 +7,10 @@ Integrantes:
 - ROY ANGEL CHOQUEHUANCA ANCONEYRA
 
 # Manual
-Cada archivo fue creado por separado para posteriormente unirlo, donde se pueden introducir las instrucciones en un .txt o por la terminal
+En este repositorio podra encontrar los diversos metodos aprendidos durante el curso de Base de Datos II de la Escuela de Ciencia de la Computacion de la UNSA.
+Para poder operar este repositorio debe contar con:
+* Sistema Operativo Compatible con C++
+* Compilador de C++
 
 ## BTree
 Al descargar la carpeta BTree puede probrarlo desde el main.cpp, desde ahí puede ejecutarlo.
