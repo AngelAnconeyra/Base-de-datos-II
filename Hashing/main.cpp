@@ -1,11 +1,22 @@
+#include <bits/stdc++.h>
 #include "ExtendibleHash.h"
+
 int main()
 {
-	ExtendibleHash hash;
-	hash.insert(2);
-	hash.insert(7);
-	hash.insert(3);
-	hash.insert(1);
-	hash.insert(5);
-	return 0;
+    ExtendibleHash my_hash(3);
+    my_hash.insert(50);
+
+    my_hash.insert(700);
+    my_hash.insert(76);
+
+    my_hash.insert(85);
+    my_hash.insert(92);
+    my_hash.insert(73);
+    my_hash.insert(101);
+
+
+    my_hash.print_to_console();
+
+
+    return 0;
 }
