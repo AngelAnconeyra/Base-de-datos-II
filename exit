@@ -1,0 +1,224 @@
+[33mcommit 253cadd20fb4ac60f2c093dda03cff176542eea1[m[33m ([m[1;36mHEAD -> [m[1;32mexperimento_uno[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Sep 15 12:54:25 2022 -0500
+
+    Create Practica1.txt
+
+[33mcommit 9aeb33d7c7a27b4bcea593b4548c62d1ff6aea6e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 5acf25d bfd9c88
+Author: Piero Vizcarra Vargas <77543520+Pev40@users.noreply.github.com>
+Date:   Wed Aug 24 23:48:06 2022 -0500
+
+    Merge pull request #2 from Pev40/patch-2
+    
+    Update README.md
+
+[33mcommit bfd9c881baafecee5dc01fc210fedbe35d8d125c[m
+Author: Piero Vizcarra Vargas <77543520+Pev40@users.noreply.github.com>
+Date:   Wed Aug 24 23:46:35 2022 -0500
+
+    Update README.md
+
+[33mcommit 5acf25d36d15b4b4b4341510c443e715be50c9bd[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 23:12:48 2022 -0500
+
+    Add files via upload
+
+[33mcommit ff929c136690854d850bfc7c842579cc842b6cee[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 23:10:17 2022 -0500
+
+    Update README.md
+
+[33mcommit 62d10bab8da8f79f174aa60c897d0788f90049aa[m
+Author: Fabrizio Mattos <84942050+fm1299@users.noreply.github.com>
+Date:   Wed Aug 24 23:08:12 2022 -0500
+
+    Add files via upload
+
+[33mcommit 270def36d50e4e868d305bd3cf95fd03f2bdf307[m
+Author: Juasjuas <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Wed Aug 24 22:57:56 2022 -0500
+
+    Update scan.cpp
+
+[33mcommit ae9414e314ba7eda25f6bbf8075933188b451542[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:39:09 2022 -0500
+
+    Update README.md
+
+[33mcommit 322fd8d66cef01effce9d371f330df189caca69d[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:37:56 2022 -0500
+
+    Update README.md
+
+[33mcommit 9fbb8bf9ffb4aba8a06a5b2753e86c65a543b772[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:37:27 2022 -0500
+
+    Update README.md
+
+[33mcommit a9704b1cdbff0c48dfb9826c593facb3b2860b6b[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:35:05 2022 -0500
+
+    Update README.md
+
+[33mcommit 75b99a216a3c004029e1a307568faf4fed5bb6b3[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:32:14 2022 -0500
+
+    Add files via upload
+
+[33mcommit 383469abedf94dc4e4325358aafc3164b0222775[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 22:31:50 2022 -0500
+
+    Update README.md
+
+[33mcommit bd11a2145414ad51ea5b1625786c18067fc49e91[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 09:31:21 2022 -0500
+
+    Update main.cpp
+
+[33mcommit a3da09687dc77ec46d442ee673b53bd5d12ad84d[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 09:30:54 2022 -0500
+
+    Update BTree.h
+
+[33mcommit 804cf631cc9ccca891eddf8823785b041fc62c5e[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Wed Aug 24 09:30:21 2022 -0500
+
+    Update Nodo.h
+
+[33mcommit bc05bbb76b1663207b4bc015abcd1bcbfdb19cc9[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Tue Jul 19 22:02:38 2022 -0500
+
+    Update Nodo.h
+
+[33mcommit 004aff008e163ed794375b00c728baf07f198bab[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Tue Jul 19 22:00:57 2022 -0500
+
+    Update main.cpp
+
+[33mcommit 17f25706df4add72c89bd670f7e4fbe9459ea828[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Tue Jul 19 22:00:40 2022 -0500
+
+    Update BTree.h
+
+[33mcommit e58878c1a1ff46338b4089ccc1914f941657b18f[m
+Author: Fabrizio Mattos <84942050+fm1299@users.noreply.github.com>
+Date:   Fri Jul 15 20:11:45 2022 -0500
+
+    Add files via upload
+
+[33mcommit 02165b6ea25ef92f56d1f7c3303fb2389610592f[m
+Author: AlbertLlica <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Fri Jul 15 13:49:39 2022 -0500
+
+    Update scan.cpp
+
+[33mcommit 9864b9bdbb38449b5dea8dc7a7c9929ee6607049[m
+Author: AlbertLlica <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Fri Jul 15 12:48:26 2022 -0500
+
+    Update scan.cpp
+
+[33mcommit 57cd16ac136d5abdbfe95e7ecb8c6200795c50f8[m
+Author: AlbertLlica <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Fri Jul 15 12:03:07 2022 -0500
+
+    Add files via upload
+
+[33mcommit 792aae405199bdb3f6bee5d31307bcc68adbf044[m
+Author: AlbertLlica <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Fri Jul 15 12:02:09 2022 -0500
+
+    Delete scan.cpp
+
+[33mcommit 768e2bc6f103eb7c504eb4e67277d2ce4e7af948[m
+Author: AlbertLlica <82473627+AlbertLlica@users.noreply.github.com>
+Date:   Fri Jul 15 12:00:47 2022 -0500
+
+    avance
+
+[33mcommit 9c723d78bf9f7b7cf7eb2138fad626d3b6587063[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jul 14 01:21:39 2022 -0500
+
+    14/07/2022
+
+[33mcommit 3c9cfda4c74d6ceced67cf971973bdce681e7e12[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jul 14 01:21:15 2022 -0500
+
+    14/07/2022
+
+[33mcommit 448b3efa7f4b70e009409e44416545dcf24d22b3[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jul 14 01:20:41 2022 -0500
+
+    14/07/2022
+
+[33mcommit d507f3989e0536b62b61d7d1bd04f52a167e87b6[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Sat Jul 9 18:08:13 2022 -0500
+
+    second commit
+
+[33mcommit 97972b3d5b5624afb736264f29c67b9b4973981d[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Sat Jul 9 17:55:17 2022 -0500
+
+    first commit
+
+[33mcommit 26bc04c09c762fd575f1913e8d338ead640f628b[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Sat Jul 9 17:54:45 2022 -0500
+
+    first commit
+
+[33mcommit 9356b0fad8c5971eda8c5f02920bcbd70c7f8a1e[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Sat Jul 9 17:54:20 2022 -0500
+
+    firs commit
+
+[33mcommit f4ccb7b351fee970c17e7d8ead19d9b8bfe7ced6[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Fri Jul 1 07:10:17 2022 -0500
+
+    Create README.md
+
+[33mcommit 084b7f395c5bcc805f162dbaca913cdbe2386444[m
+Author: Fabrizio Mattos <84942050+fm1299@users.noreply.github.com>
+Date:   Thu Jun 30 23:50:13 2022 -0500
+
+    Add files via upload
+
+[33mcommit e5af8a32ec1cdb52dbf1789e73d76f3b1bbba305[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jun 30 22:53:28 2022 -0500
+
+    Create Linked_Listt.h
+
+[33mcommit 3b4d3fd2e8f0f489344ae76ff5e47ab11791a53c[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jun 30 22:53:01 2022 -0500
+
+    Create Nodo.h
+
+[33mcommit 9ff19426b81ec9ac10ff3ce615239e79b7f8b96c[m
+Author: Angel Choquehuanca Anconeyra <84652181+AngelAnconeyra@users.noreply.github.com>
+Date:   Thu Jun 30 22:52:43 2022 -0500
+
+    Create MRU.cpp
